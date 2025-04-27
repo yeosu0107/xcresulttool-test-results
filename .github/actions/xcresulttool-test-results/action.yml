@@ -1,0 +1,42 @@
+name: 'xcresulttool-test-results'
+description: 'Generate a markdown summary from xcresulttool test-results summary'
+inputs:
+  xcresult-path:
+    description: 'Path to the .xcresult bundle'
+    required: true
+  output-md:
+    description: 'Path to output markdown file'
+    required: false
+    default: 'test-summary.md'
+runs:
+  using: "composite"
+  steps:
+    - name: Check OS
+      shell: bash
+      run: |
+        if [[ "$RUNNER_OS" != "macOS" ]]; then
+          echo "This action only works on macOS runners."
+          exit 1
+        fi
+
+    - name: Install jq
+      shell: bash
+      run: |
+        if ! command -v jq &> /dev/null; then
+          sudo apt-get update && sudo apt-get install -y jq
+        fi
+
+    - name: Extract summary.json from xcresult
+      shell: bash
+      run: |
+        xcrun xcresulttool get test-results summary --path "${{ inputs.xcresult-path }}" > summary.json
+
+    - name: Generate Markdown Summary
+      shell: bash
+      run: |
+        "${{ github.action_path }}/entrypoint.sh" "${{ inputs.summary-path }}" "${{ inputs.output-md }}"
+
+    - name: Upload Markdown to Job Summary
+      shell: bash
+      run: |
+        cat "${{ inputs.output-md }}" >> $GITHUB_STEP_SUMMARY
