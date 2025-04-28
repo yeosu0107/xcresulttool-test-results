@@ -23,7 +23,7 @@ runs:
       shell: bash
       run: |
         if ! command -v jq &> /dev/null; then
-          sudo apt-get update && sudo apt-get install -y jq
+          brew install jq
         fi
 
     - name: Extract summary.json from xcresult
@@ -34,7 +34,7 @@ runs:
     - name: Generate Markdown Summary
       shell: bash
       run: |
-        "sh entrypoint.sh" "${{ inputs.summary-path }}" "${{ inputs.output-md }}"
+        "bash ${{ github.action_path }}/entrypoint.sh" summary.json "${{ inputs.output-md }}"
 
     - name: Upload Markdown to Job Summary
       shell: bash
