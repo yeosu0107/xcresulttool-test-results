@@ -34,7 +34,7 @@ runs:
     - name: Generate Markdown Summary
       shell: bash
       run: |
-        "bash ${{ github.action_path }}/entrypoint.sh" summary.json "${{ inputs.output-md }}"
+        bash ${{ github.action_path }}/entrypoint.sh summary.json "${{ inputs.output-md }}"
 
     - name: Upload Markdown to Job Summary
       shell: bash
