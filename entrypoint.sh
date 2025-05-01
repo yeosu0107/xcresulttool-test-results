@@ -21,13 +21,13 @@ DURATION_FMT=$(printf "%.2f" "$DURATION")
 cat <<EOF > "$OUTPUT_MD"
 ## 🧪 Test Summary: $TITLE
 
-| Result | Total | Passed | Failed | Skipped | Expected Fail | Time (s) |
+| Result | Total | ✅ Passed | ❌ Failed | ⏭️ Skipped | ❎ Expected Fail | ⏱️ Time (s) |
 |--------|-------|--------|--------|---------|--------------|----------|
 | $RESULT | $TOTAL | $PASSED | $FAILED | $SKIPPED | $EXPECTED_FAIL | $DURATION_FMT |
 
 ---
 
-## Test Environment
+## 🖥️ Test Environment
 
 - **Environment**: $ENV_DESC
 - **Test Plan**: $TEST_PLAN
