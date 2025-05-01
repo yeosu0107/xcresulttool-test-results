@@ -1,0 +1,27 @@
+name: 'build-test'
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./
+        with:
+          xcresult-path: mock/TestResults.xcresult
+          output-md: test-summary.md
+
+      - name: check test-summary.md
+        run: |
+          if [ ! -f test-summary.md ]; then
+            echo "❌ test-summary.md was not generated."
+            exit 1
+          else
+            echo "✅ test-summary.md was generated successfully."
+          fi
