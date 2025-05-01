@@ -14,7 +14,7 @@ jobs:
 
       - uses: ./
         with:
-          xcresult-path: mock/TestResults.xcresult
+          xcresult-path: __tests__/data/TestResults.xcresult
           output-md: test-summary.md
 
       - name: check test-summary.md
