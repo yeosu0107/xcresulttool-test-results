@@ -8,6 +8,9 @@ inputs:
     description: 'Path to output markdown file'
     required: false
     default: 'test-summary.md'
+branding:
+  icon: 'book-open'
+  color: 'blue'
 runs:
   using: "composite"
   steps:
