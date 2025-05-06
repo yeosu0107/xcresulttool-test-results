@@ -34,7 +34,7 @@ cat <<EOF > "$OUTPUT_MD"
 
 ---
 
-## 📋 Device Results
+## 📱 Device Results
 
 | Device Name | OS Version | Arch   | Passed | Failed | Skipped | Expected Fail | Time (s) | Total |
 |-------------|-----------|--------|--------|--------|---------|--------------|----------|-------|

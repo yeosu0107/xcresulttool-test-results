@@ -15,6 +15,7 @@ jobs:
       - uses: ./
         with:
           xcresult-path: __tests__/data/TestResult.xcresult
+          show-each-test-results: 'true'
           output-md: test-summary.md
 
       - name: check test-summary.md
