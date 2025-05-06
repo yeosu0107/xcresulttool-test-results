@@ -47,7 +47,7 @@ runs:
       shell: bash
       if: ${{ inputs.show-each-test-results }} == 'true'
       run: |
-        xcrun xcresulttool get test-results test-results --path "${{ inputs.xcresult-path }}" > test-results.json
+        xcrun xcresulttool get test-results tests --path "${{ inputs.xcresult-path }}" > test-results.json
 
     - name: Generate Markdown Test-Results
       shell: bash
