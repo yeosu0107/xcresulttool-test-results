@@ -6,7 +6,7 @@ OUTPUT_MD="$2"
 
 echo -e "\n ---\n" >> "$OUTPUT_MD"
 echo -e "\n## 📝 Test Results" >> "$OUTPUT_MD"
-echo -e "| Test Suite | Total | ✅ | ❌ | ⏭ | ⛔️ |" >> "$OUTPUT_MD"
+echo -e "| Test | Total | ✅ Passed | ❌ Failed | ⏭ Skipped | ⛔️ Error |" >> "$OUTPUT_MD"
 echo -e "|------------|-------|----|----|----|----|" >> "$OUTPUT_MD"
 
 # jq로 표 내용 추출해서 md 파일에 추가
