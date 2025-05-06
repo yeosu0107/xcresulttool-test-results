@@ -5,7 +5,7 @@ inputs:
     description: 'Path to the .xcresult bundle'
     required: true
   show-each-test-results:
-    description: : 'Print each test results'
+    description: 'Print each test results'
     required: false
     default: 'false'
   output-md:
