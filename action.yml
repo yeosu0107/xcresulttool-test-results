@@ -51,6 +51,7 @@ runs:
 
     - name: Generate Markdown Test-Results
       shell: bash
+      if: ${{ inputs.show-each-test-results }} == 'true'
       run: |
         bash ${{ github.action_path }}/test-results.sh test-results.json "${{ inputs.output-md }}"
 
