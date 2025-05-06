@@ -4,6 +4,10 @@ inputs:
   xcresult-path:
     description: 'Path to the .xcresult bundle'
     required: true
+  show-each-test-results:
+    description: : 'Print each test results'
+    required: false
+    default: 'false'
   output-md:
     description: 'Path to output markdown file'
     required: false
@@ -38,6 +42,17 @@ runs:
       shell: bash
       run: |
         bash ${{ github.action_path }}/entrypoint.sh summary.json "${{ inputs.output-md }}"
+
+    - name: Extract test-results from xcresult
+      shell: bash
+      if: ${{ inputs.show-each-test-results }} == 'true'
+      run: |
+        xcrun xcresulttool get test-results test-results --path "${{ inputs.xcresult-path }}" > test-results.json
+
+    - name: Generate Markdown Test-Results
+      shell: bash
+      run: |
+        bash ${{ github.action_path }}/test-results.sh test-results.json "${{ inputs.output-md }}"
 
     - name: Upload Markdown to Job Summary
       shell: bash
