@@ -4,12 +4,13 @@ set -e
 TEST_RESULTS_JSON="$1"
 OUTPUT_MD="$2"
 
-echo -e "\n ---\n" >> "$OUTPUT_MD"
-echo -e "\n## 📝 Test Results" >> "$OUTPUT_MD"
-echo -e "| Test | Total | ✅ Passed | ❌ Failed | ⏭ Skipped | ⛔️ Error |" >> "$OUTPUT_MD"
-echo -e "|------------|-------|----|----|----|----|" >> "$OUTPUT_MD"
+{
+  echo -e "\n ---\n"
+  echo -e "\n## Test Results"
+  echo -e "| Test | Total | ✅ | ❌ | ⏭ | ❎ |"
+  echo -e "|---|---:|---:|---:|---:|---:|"
+} >> "$OUTPUT_MD"
 
-# jq로 표 내용 추출해서 md 파일에 추가
 jq -r '
   .testNodes[].children[] |
     .children[]? |
@@ -20,7 +21,7 @@ jq -r '
         passed: ([.children[] | select(.result == "Passed")] | length),
         failed: ([.children[] | select(.result == "Failed")] | length),
         skipped: ([.children[] | select(.result == "Skipped")] | length),
-        error: ([.children[] | select(.result == "Error")] | length)
+        expected: ([.children[] | select(.result == "Expected Failure")] | length)
       } |
-      "| \(.name) | \(.total) | \(.passed) | \(.failed) | \(.skipped) | \(.error) |"
+      "| \(.name) | \(.total) | \(.passed) | \(.failed) | \(.skipped) | \(.expected) |"
 ' "$TEST_RESULTS_JSON" >> "$OUTPUT_MD"
