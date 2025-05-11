@@ -4,10 +4,12 @@ set -e
 TEST_RESULTS_JSON="$1"
 OUTPUT_MD="$2"
 
-echo -e "\n ---\n" >> "$OUTPUT_MD"
-echo -e "\n## Test Results" >> "$OUTPUT_MD"
-echo -e "| Test | Total | ✅ | ❌ | ⏭ | ❎ |" >> "$OUTPUT_MD"
-echo -e "|---|---:|---:|---:|---:|---:|" >> "$OUTPUT_MD"
+{
+  echo -e "\n ---\n"
+  echo -e "\n## Test Results"
+  echo -e "| Test | Total | ✅ | ❌ | ⏭ | ❎ |"
+  echo -e "|---|---:|---:|---:|---:|---:|"
+} >> "$OUTPUT_MD"
 
 jq -r '
   .testNodes[].children[] |

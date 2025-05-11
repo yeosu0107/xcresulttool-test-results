@@ -39,7 +39,7 @@ cat <<EOF > "$OUTPUT_MD"
 EOF
 
 len=$(jq '.devicesAndConfigurations | length' "$SUMMARY_JSON")
-for ((i=0; i<$len; i++)); do
+for $((i=0; i<len; i++)); do
   deviceName=$(jq -r ".devicesAndConfigurations[$i].device.deviceName" "$SUMMARY_JSON")
   osVersion=$(jq -r ".devicesAndConfigurations[$i].device.osVersion" "$SUMMARY_JSON")
   osBuildNumber=$(jq -r ".devicesAndConfigurations[$i].device.osVersion" "$SUMMARY_JSON")
