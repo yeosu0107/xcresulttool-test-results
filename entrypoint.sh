@@ -19,25 +19,25 @@ DURATION=$(echo "$FINISH_TIME - $START_TIME" | bc)
 DURATION_FMT=$(printf "%.2f" "$DURATION")
 
 cat <<EOF > "$OUTPUT_MD"
-## 🧪 Test Summary: $TITLE
+## Summary: $TITLE
 
 | Result | Total | ✅ Passed | ❌ Failed | ⏭️ Skipped | ❎ Expected Fail | ⏱️ Time (s) |
-|--------|-------|--------|--------|---------|--------------|----------|
+|-------:|------:|-------:|-------:|--------:|-------------:|---------:|
 | $RESULT | $TOTAL | $PASSED | $FAILED | $SKIPPED | $EXPECTED_FAIL | $DURATION_FMT |
 
 ---
 
-## 🖥️ Test Environment
+## Environment
+
+### Build Environment
 
 - **Environment**: $ENV_DESC
 - **Test Plan**: $TEST_PLAN
 
----
-
-## 📱 Device Results
+### Device Results
 
 | Device Name | OS Version | Arch   | Passed | Failed | Skipped | Expected Fail | Time (s) | Total |
-|-------------|-----------|--------|--------|--------|---------|--------------|----------|-------|
+|------------:|----------:|-------:|-------:|-------:|--------:|-------------:|---------:|------:|
 EOF
 
 len=$(jq '.devicesAndConfigurations | length' "$SUMMARY_JSON")
