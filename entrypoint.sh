@@ -34,15 +34,11 @@ cat <<EOF > "$OUTPUT_MD"
 
 ### Device Environment
 
-| Device Name | OS Version | Arch | SDK |
-|---:|---:|---:|---:|
 EOF
 
 jq -c '.devicesAndConfigurations[]' "$SUMMARY_JSON" | while read -r item; do
   deviceName=$(echo "$item" | jq -r '.device.deviceName')
   osVersion=$(echo "$item" | jq -r '.device.osVersion')
-  osBuildNumber=$(echo "$item" | jq -r '.device.osBuildNumber')
-  arch=$(echo "$item" | jq -r '.device.architecture')
   platform=$(echo "$item" | jq -r '.device.platform')
-  echo "| $deviceName | $osVersion ($osBuildNumber) | $arch | $platform |" >> "$OUTPUT_MD"
+  echo "- Devie: $deviceName, $osVersion, $platform" >> "$OUTPUT_MD"
 done
