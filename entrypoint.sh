@@ -21,9 +21,9 @@ DURATION_FMT=$(printf "%.2f" "$DURATION")
 cat <<EOF > "$OUTPUT_MD"
 ## Summary: $TITLE
 
-| Result | Total | ✅ Passed | ❌ Failed | ⏭️ Skipped | ❎ Expected Fail | ⏱️ Time (s) |
-|-------:|------:|-------:|-------:|--------:|-------------:|---------:|
-| $RESULT | $TOTAL | $PASSED | $FAILED | $SKIPPED | $EXPECTED_FAIL | $DURATION_FMT |
+| Result | Total | ✅ Passed | ❌ Failed | ⏭️ Skipped | ❎ Expected Fail | ⏱️ Time |
+|:-------:|------:|-------:|-------:|--------:|-------------:|---------:|
+| $RESULT | $TOTAL | $PASSED | $FAILED | $SKIPPED | $EXPECTED_FAIL | $DURATION_FMT (s) |
 
 ---
 
@@ -31,8 +31,8 @@ cat <<EOF > "$OUTPUT_MD"
 
 ### Build Environment
 
-- **Environment**: $ENV_DESC
-- **Test Plan**: $TEST_PLAN
+- Environment: $ENV_DESC
+- Test Plan: $TEST_PLAN
 
 ### Device Results
 
