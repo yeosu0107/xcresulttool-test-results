@@ -1,5 +1,7 @@
 # xcresulttool-test-results
 
+[![build-test](https://github.com/yeosu0107/xcresulttool-test-results/actions/workflows/test.yml/badge.svg)](https://github.com/yeosu0107/xcresulttool-test-results/actions/workflows/test.yml)
+
 Generate a markdown summary report from an `.xcresult` bundle using `xcresulttool` (Xcode 16+).
 
 > **Note:**<br/>
@@ -39,25 +41,8 @@ This GitHub Action parses your test results and creates a clear, readable markdo
 |--------------|----------|-------------------|--------------------------------------------------|
 | summary-path | ✅       | -                 | Path to the xcresulttool summary JSON file       |
 | output-md    | ❌       | test-summary.md   | Output markdown file name                        |
+show-each-test-results | ❌ | false | If true, print each test results |
 
 ## Output Example
-## 🧪 Test Summary: Test
 
-| Result | Total | Passed | Failed | Skipped | Expected Fail | Time (s) |
-|--------|-------|--------|--------|---------|--------------|----------|
-| Passed | 11    | 10     | 0      | 1       | 0            | 20.00    |
-
----
-
-## Test Environment
-
-- **Environment**: macOS
-- **Test Plan**: Test Scheme Action
-
----
-
-## 📋 Device Results
-
-| Device Name | OS Version | Arch   | Passed | Failed | Skipped | Expected Fail | Time (s) | Total |
-|-------------|-----------|--------|--------|--------|---------|--------------|----------|-------|
-| iPhone 16   | 18.2      | arm64  | 10     | 0      | 1       | 0            | 20.00    | 11    |
+See the [build-test action summary](https://github.com/yeosu0107/xcresulttool-test-results/actions/runs/14956712317) for an output example.
