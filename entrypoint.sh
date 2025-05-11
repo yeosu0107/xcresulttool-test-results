@@ -38,12 +38,11 @@ cat <<EOF > "$OUTPUT_MD"
 |---:|---:|---:|---:|
 EOF
 
-len=$(jq '.devicesAndConfigurations | length' "$SUMMARY_JSON")
-for $((i=0; i<len; i++)); do
-  deviceName=$(jq -r ".devicesAndConfigurations[$i].device.deviceName" "$SUMMARY_JSON")
-  osVersion=$(jq -r ".devicesAndConfigurations[$i].device.osVersion" "$SUMMARY_JSON")
-  osBuildNumber=$(jq -r ".devicesAndConfigurations[$i].device.osVersion" "$SUMMARY_JSON")
-  arch=$(jq -r ".devicesAndConfigurations[$i].device.osBuildNumber" "$SUMMARY_JSON")
-  platform=$(jq -r ".devicesAndConfigurations[$i].device.platform" "$SUMMARY_JSON")
+jq -c '.devicesAndConfigurations[]' "$SUMMARY_JSON" | while read -r item; do
+  deviceName=$(echo "$item" | jq -r '.device.deviceName')
+  osVersion=$(echo "$item" | jq -r '.device.osVersion')
+  osBuildNumber=$(echo "$item" | jq -r '.device.osBuildNumber')
+  arch=$(echo "$item" | jq -r '.device.architecture')
+  platform=$(echo "$item" | jq -r '.device.platform')
   echo "| $deviceName | $osVersion ($osBuildNumber) | $arch | $platform |" >> "$OUTPUT_MD"
 done
