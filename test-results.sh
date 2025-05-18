@@ -4,7 +4,9 @@ set -e
 TEST_RESULTS_JSON="$1"
 OUTPUT_MD="$2"
 
-cat <<EOF >> "$OUTPUT_MD"
+{
+cat <<EOF
+
 ---
 
 ## Test Results
@@ -18,6 +20,7 @@ cat <<EOF >> "$OUTPUT_MD"
     <th style="width: 10%; text-align: center;">❎</th>
   </tr>
 EOF
+} >> "$OUTPUT_MD"
 
 jq -r '
   .testNodes[].children[] |
