@@ -32,12 +32,12 @@ cat <<EOF > "$OUTPUT_MD"
   </tr>
   <tr>
     <td style="text-align: center;">$RESULT</td>
-    <td style="text-align: left;">$TOTAL</td>
-    <td style="text-align: left;">$PASSED</td>
-    <td style="text-align: left;">$FAILED</td>
-    <td style="text-align: left;">$SKIPPED</td>
-    <td style="text-align: left;">$EXPECTED_FAIL</td>
-    <td style="text-align: left;">$DURATION_FMT</td>
+    <td style="text-align: right;">$TOTAL</td>
+    <td style="text-align: right;">$PASSED</td>
+    <td style="text-align: right;">$FAILED</td>
+    <td style="text-align: right;">$SKIPPED</td>
+    <td style="text-align: right;">$EXPECTED_FAIL</td>
+    <td style="text-align: right;">$DURATION_FMT</td>
   </tr>
 </table>
 
