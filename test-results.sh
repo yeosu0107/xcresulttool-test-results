@@ -4,12 +4,20 @@ set -e
 TEST_RESULTS_JSON="$1"
 OUTPUT_MD="$2"
 
-{
-  echo -e "\n ---\n"
-  echo -e "\n## Test Results"
-  echo -e "| Test | Total | ✅ | ❌ | ⏭ | ❎ |"
-  echo -e "|---|---:|---:|---:|---:|---:|"
-} >> "$OUTPUT_MD"
+cat <<EOF >> "$OUTPUT_MD"
+---
+
+## Test Results
+<table width="100%">
+  <tr>
+    <th style="text-align: center;">Test</th>
+    <th style="text-align: center;">Total</th>
+    <th style="width: 10%; text-align: center;">✅</th>
+    <th style="width: 10%; text-align: center;">❌</th>
+    <th style="width: 10%; text-align: center;">⏭</th>
+    <th style="width: 10%; text-align: center;">❎</th>
+  </tr>
+EOF
 
 jq -r '
   .testNodes[].children[] |
@@ -23,5 +31,8 @@ jq -r '
         skipped: ([.children[] | select(.result == "Skipped")] | length),
         expected: ([.children[] | select(.result == "Expected Failure")] | length)
       } |
-      "| \(.name) | \(.total) | \(.passed) | \(.failed) | \(.skipped) | \(.expected) |"
+      "  <tr>\n    <td style=\"text-align: left;\">\(.name)</td>\n    <td style=\"text-align: right;\">\(.total)</td>\n    <td style=\"text-align: right;\">\(.passed)</td>\n    <td style=\"text-align: right;\">\(.failed)</td>\n    <td style=\"text-align: right;\">\(.skipped)</td>\n    <td style=\"text-align: right;\">\(.expected)</td>\n  </tr>"
 ' "$TEST_RESULTS_JSON" >> "$OUTPUT_MD"
+
+echo "</table>" >> "$OUTPUT_MD"
+

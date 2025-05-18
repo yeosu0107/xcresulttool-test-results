@@ -20,9 +20,26 @@ DURATION_FMT=$(printf "%.2f" "$DURATION")
 cat <<EOF > "$OUTPUT_MD"
 ## Summary: $TITLE
 
-| Result | Total | ✅ Passed | ❌ Failed | ⏭️ Skipped | ❎ Expected Fail | ⏱️ Time (s) |
-|:---:|---:|---:|---:|---:|---:|---:|
-| $RESULT | $TOTAL | $PASSED | $FAILED | $SKIPPED | $EXPECTED_FAIL | $DURATION_FMT |
+<table width="100%" style="table-layout: fixed;">
+  <tr>
+    <th style="width: 14.28%; text-align: center;">Result</th>
+    <th style="width: 14.28%; text-align: center;">Total</th>
+    <th style="width: 14.28%; text-align: center;">✅ Passed</th>
+    <th style="width: 14.28%; text-align: center;">❌ Failed</th>
+    <th style="width: 14.28%; text-align: center;">⏭️ Skipped</th>
+    <th style="width: 14.28%; text-align: center;">❎ Expected Fail</th>
+    <th style="width: 14.28%; text-align: center;">⏱️ Time (s)</th>
+  </tr>
+  <tr>
+    <td style="text-align: center;">$RESULT</td>
+    <td style="text-align: left;">$TOTAL</td>
+    <td style="text-align: left;">$PASSED</td>
+    <td style="text-align: left;">$FAILED</td>
+    <td style="text-align: left;">$SKIPPED</td>
+    <td style="text-align: left;">$EXPECTED_FAIL</td>
+    <td style="text-align: left;">$DURATION_FMT</td>
+  </tr>
+</table>
 
 ---
 
