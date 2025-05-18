@@ -20,7 +20,7 @@ DURATION_FMT=$(printf "%.2f" "$DURATION")
 cat <<EOF > "$OUTPUT_MD"
 ## Summary: $TITLE
 
-<table width="100%" style="table-layout: fixed;">
+<table width="800px" style="table-layout: fixed;">
   <tr>
     <th style="width: 14.28%; text-align: center;">Result</th>
     <th style="width: 14.28%; text-align: center;">Total</th>

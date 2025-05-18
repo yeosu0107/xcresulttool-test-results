@@ -6,11 +6,10 @@ OUTPUT_MD="$2"
 
 {
 cat <<EOF
-
 ---
 
 ## Test Results
-<table width="100%">
+<table width="800px" style="table-layout: fixed;">
   <tr>
     <th style="text-align: center;">Test</th>
     <th style="text-align: center;">Total</th>
