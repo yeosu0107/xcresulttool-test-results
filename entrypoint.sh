@@ -40,5 +40,5 @@ jq -c '.devicesAndConfigurations[]' "$SUMMARY_JSON" | while read -r item; do
   deviceName=$(echo "$item" | jq -r '.device.deviceName')
   osVersion=$(echo "$item" | jq -r '.device.osVersion')
   platform=$(echo "$item" | jq -r '.device.platform')
-  echo "- Devie: $deviceName, $osVersion, $platform" >> "$OUTPUT_MD"
+  echo "- Device: $deviceName, $osVersion, $platform" >> "$OUTPUT_MD"
 done
