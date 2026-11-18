@@ -14,35 +14,35 @@ This GitHub Action parses your test results and creates a clear, readable markdo
 
 - 📋 Summarizes total, passed, failed, skipped, expected failures, and duration
 - 📱 Lists detailed results for each device configuration
-- 📝 Outputs a markdown file for easy inclusion in GitHub Actions Job Summary or PR comments
+- 📝 Writes a Markdown file and appends the report to the GitHub Actions job summary
 - ⚠️ **Requires Xcode 16+ (macOS runner only)**
 
 ## Usage
 
 ```yaml
-  uses: yeosu0107/xcresulttool-test-results@v1
+- uses: yeosu0107/xcresulttool-test-results@v1.2.1
+  if: success() || failure()
   with:
     xcresult-path: TestResults.xcresult
     output-md: test-summary.md
-  if: success() || failure()
-  # ^ This ensures the action runs regardless of whether the previous test step passes or fails,
-  # so that test results are always processed and reported.
 ```
 
+Add this step after the step that generates the `.xcresult` bundle. The `if` condition lets the report run even when the test step fails.
+
 > **Note:**<br/>
-> This action must be run on a `macos-latest` runner with **Xcode 16 or higher** installed.<br/>
+> This action requires a macOS runner with **Xcode 16 or higher** installed.<br/>
 > The action will install [jq](https://stedolan.github.io/jq/) if it is not already present.
 
 ---
 
 ## Inputs
 
-| Name         | Required | Default           | Description                                      |
-|--------------|----------|-------------------|--------------------------------------------------|
-| xcresult-path | ✅       | -                 | Path to the `.xcresult` bundle       |
-| output-md    | ❌       | test-summary.md   | Output markdown file name                        |
-show-each-test-results | ❌ | false | If true, print each test results |
+| Name | Required | Default | Description |
+| --- | --- | --- | --- |
+| `xcresult-path` | Yes | — | Path to the `.xcresult` bundle. |
+| `output-md` | No | `test-summary.md` | Path to the generated Markdown report. |
+| `show-each-test-results` | No | `false` | Set to `true` to include individual test results in the report. |
 
 ## Output Example
 
-See the [build-test action summary](https://github.com/yeosu0107/xcresulttool-test-results/actions/runs/14956712317) for an output example.
+Open a run from the [build-test workflow](https://github.com/yeosu0107/xcresulttool-test-results/actions/workflows/test.yml) and select **Summary** to see the generated report.
